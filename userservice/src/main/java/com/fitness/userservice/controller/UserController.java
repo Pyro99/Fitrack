@@ -17,12 +17,17 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserResponseDTO> getUserProfile(@PathVariable String userId){
+    public ResponseEntity<UserResponseDTO> getUserProfile(@PathVariable String userId) {
         return ResponseEntity.ok(userService.getuserProfile(userId));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserResponseDTO> register(@Valid @RequestBody UserRequestDTO requestDto){
+    public ResponseEntity<UserResponseDTO> register(@Valid @RequestBody UserRequestDTO requestDto) {
         return ResponseEntity.ok(userService.register(requestDto));
+    }
+
+    @GetMapping("/{userId}/validate")
+    public ResponseEntity<Boolean> validateUser(@PathVariable String userId) {
+        return ResponseEntity.ok(userService.existByUserId(userId));
     }
 }

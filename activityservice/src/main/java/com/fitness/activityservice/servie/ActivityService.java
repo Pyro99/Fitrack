@@ -15,9 +15,14 @@ import java.util.List;
 public class ActivityService {
 
     private final ActivityRepository activityRepository;
+    private final UserValidationService userValidationService;
 
     public ActivityResponseDTO trackActivity(ActivityRequestDTO requestDto) {
 
+        boolean isValidUser = userValidationService.validateUser(requestDto.getUserId());
+        if (!isValidUser) {
+            throw new RuntimeException("Invalid User" + requestDto.getUserId());
+        }
         Activity activity = ActivityMapper.toModel(requestDto);
 
         Activity savedActivity = activityRepository.save(activity);

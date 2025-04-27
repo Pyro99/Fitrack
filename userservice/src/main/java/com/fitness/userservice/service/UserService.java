@@ -16,7 +16,7 @@ public class UserService {
 
     public UserResponseDTO register(UserRequestDTO requestDto) {
 
-        if(userRepository.existsByEmail(requestDto.getEmail())){
+        if (userRepository.existsByEmail(requestDto.getEmail())) {
             throw new RuntimeException("Email already exists!");
         }
 
@@ -27,7 +27,11 @@ public class UserService {
 
     public UserResponseDTO getuserProfile(String userId) {
 
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User with id: "+userId+" not found"));
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User with id: " + userId + " not found"));
         return UserMapper.toDto(user);
+    }
+
+    public Boolean existByUserId(String userId) {
+        return userRepository.existsById(userId);
     }
 }

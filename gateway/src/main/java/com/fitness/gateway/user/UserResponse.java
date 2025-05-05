@@ -1,9 +1,9 @@
-package com.fitness.userservice.dto;
+package com.fitness.gateway.user;
 
 import lombok.Data;
 
 @Data
-public class UserResponseDTO {
+public class UserResponse {
 
     private String id;
     private String keycloakId;

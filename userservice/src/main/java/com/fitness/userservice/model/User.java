@@ -1,4 +1,5 @@
 package com.fitness.userservice.model;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name ="users")
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 public class User {
@@ -23,6 +24,8 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
+
+    private String keycloakId;
 
     @Enumerated(EnumType.STRING)
     private UserRole role = UserRole.USER;

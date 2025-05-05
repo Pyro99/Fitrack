@@ -17,9 +17,10 @@ public class UserService {
     public UserResponseDTO register(UserRequestDTO requestDto) {
 
         if (userRepository.existsByEmail(requestDto.getEmail())) {
-            throw new RuntimeException("Email already exists!");
+            User existingUser = userRepository.findByEmail(requestDto.getEmail());
+            UserResponseDTO userResponseDTO = UserMapper.toDto(existingUser);
+            return userResponseDTO;
         }
-
         User user = UserMapper.toModel(requestDto);
         User savedUser = userRepository.save(user);
         return UserMapper.toDto(savedUser);
@@ -31,7 +32,7 @@ public class UserService {
         return UserMapper.toDto(user);
     }
 
-    public Boolean existByUserId(String userId) {
-        return userRepository.existsById(userId);
+    public Boolean existsByKeycloakId(String userId) {
+        return userRepository.existsByKeycloakId(userId);
     }
 }

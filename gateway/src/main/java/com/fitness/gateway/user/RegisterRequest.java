@@ -1,4 +1,4 @@
-package com.fitness.userservice.dto;
+package com.fitness.gateway.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -6,10 +6,10 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class UserRequestDTO {
+public class RegisterRequest {
 
     private String keycloakId;
-
+    
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")
     private String email;
